@@ -1,17 +1,7 @@
-import io.qameta.allure.Description;
-import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.ValidatableResponse;
 import org.example.clients.OrderClient;
 import org.example.clients.UserClient;
-import org.example.generators.OrderGenerator;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.apache.http.HttpStatus.SC_OK;
 
 public class GetOrderTest {
 

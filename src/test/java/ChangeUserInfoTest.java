@@ -34,9 +34,9 @@ public class ChangeUserInfoTest {
         accessToken = responseCreate.extract().path("accessToken");
         ValidatableResponse responseEdit = userClient.editUser(accessToken);
         boolean isUserEdited = responseEdit.extract().path("success");
-        Assert.assertTrue("User isn`t created", isUserEdited);
+        Assert.assertTrue("User-info isn`t changed", isUserEdited);
         int statusCode = responseEdit.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_OK, statusCode);
+        Assert.assertEquals("Wrong status for change", SC_OK, statusCode);
     }
 
     @Test
@@ -46,8 +46,8 @@ public class ChangeUserInfoTest {
         ValidatableResponse responseEdit = userClient.editUser("wrongToken");
         accessToken = responseCreate.extract().path("accessToken");
         String actualMessage = responseEdit.extract().path("message");
-        Assert.assertEquals("Wrong message create double", "You should be authorised", actualMessage);
+        Assert.assertEquals("Wrong message for bad change", "You should be authorised", actualMessage);
         int statusCode = responseEdit.extract().statusCode();
-        Assert.assertEquals("Wrong status create double", SC_UNAUTHORIZED, statusCode);
+        Assert.assertEquals("Wrong status for bad change", SC_UNAUTHORIZED, statusCode);
     }
 }
