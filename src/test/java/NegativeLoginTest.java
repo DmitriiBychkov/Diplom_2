@@ -28,8 +28,8 @@ public class NegativeLoginTest {
         userClient.createUser(userWithoutPassword);
         ValidatableResponse responseLogin = userClient.loginUser(Credentials.from(user));
         String actualMessage = responseLogin.extract().path("message");
-        Assert.assertEquals("Wrong message - wrong login", "email or password are incorrect", actualMessage);
+        Assert.assertEquals("Wrong message if wrong login", "email or password are incorrect", actualMessage);
         int statusCode = responseLogin.extract().statusCode();
-        Assert.assertEquals("Wrong status - wrong login", SC_UNAUTHORIZED, statusCode);
+        Assert.assertEquals("Wrong status if wrong login", SC_UNAUTHORIZED, statusCode);
     }
 }

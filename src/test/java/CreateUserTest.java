@@ -35,7 +35,7 @@ public class CreateUserTest {
         boolean isUserCreated = responseCreate.extract().path("success");
         Assert.assertTrue("User isn`t created", isUserCreated);
         int statusCode = responseCreate.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_OK, statusCode);
+        Assert.assertEquals("Wrong status create user", SC_OK, statusCode);
     }
 
     @Test

@@ -13,7 +13,6 @@ import static org.example.generators.UserGenerator.*;
 public class UserClient extends Client {
     private static final String CREATE_PATH = "/api/auth/register";
     private static final String LOGIN_PATH = "/api/auth/login";
-    private static final String LOGOUT_PATH = "/api/auth/logout";
     private static final String DELETE_PATH = "/api/auth/user";
 
     @Step("Создание пользователя")
@@ -39,18 +38,6 @@ public class UserClient extends Client {
                 .then()
                 .log().all(); // логируем респонс
     }
-
-//    @Step("Выход пользователя")
-//    public ValidatableResponse logoutUser(String accessToken) {
-//        return given()
-//                .spec(getSpec())
-//                .header("Authorization", accessToken)
-//                .log().all() // логируем реквест
-//                .when()
-//                .post(LOGOUT_PATH)
-//                .then()
-//                .log().all(); // логируем респонс
-//    }
 
     @Step("Вход пользователя с неверной почтой")
     public ValidatableResponse loginUserWithWrongEmail(CredentialsWithWrongEmail credentialsWithWrongEmail) {

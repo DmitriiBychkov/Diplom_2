@@ -38,7 +38,7 @@ public class CreateOrderTest {
         boolean isOrderCreated = responseCreateOrder.extract().path("success");
         Assert.assertTrue("Order isn`t created", isOrderCreated);
         int statusCode = responseCreateOrder.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_OK, statusCode);
+        Assert.assertEquals("Wrong status for create", SC_OK, statusCode);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CreateOrderTest {
         boolean isOrderCreated = responseCreateOrder.extract().path("success");
         Assert.assertTrue("Order isn`t created", isOrderCreated);
         int statusCode = responseCreateOrder.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_OK, statusCode);
+        Assert.assertEquals("Wrong status for create", SC_OK, statusCode);
     }
 
     @Test
@@ -60,9 +60,9 @@ public class CreateOrderTest {
         accessToken = responseCreate.extract().path("accessToken");
         ValidatableResponse responseCreateOrder = orderClient.createOrderWithoutIngredients("");
         String actualMessage = responseCreateOrder.extract().path("message");
-        Assert.assertEquals("Order isn`t created", "Ingredient ids must be provided", actualMessage);
+        Assert.assertEquals("Wrong message if order isn`t created", "Ingredient ids must be provided", actualMessage);
         int statusCode = responseCreateOrder.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_BAD_REQUEST, statusCode);
+        Assert.assertEquals("Wrong status create without login and ingredients", SC_BAD_REQUEST, statusCode);
     }
 
     @Test
@@ -72,9 +72,9 @@ public class CreateOrderTest {
         accessToken = responseCreate.extract().path("accessToken");
         ValidatableResponse responseCreateOrder = orderClient.createOrderWithoutIngredients(accessToken);
         String actualMessage = responseCreateOrder.extract().path("message");
-        Assert.assertEquals("Order isn`t created", "Ingredient ids must be provided", actualMessage);
+        Assert.assertEquals("Wrong message if order isn`t created", "Ingredient ids must be provided", actualMessage);
         int statusCode = responseCreateOrder.extract().statusCode();
-        Assert.assertEquals("Wrong status create", SC_BAD_REQUEST, statusCode);
+        Assert.assertEquals("Wrong status create without ingredients", SC_BAD_REQUEST, statusCode);
     }
 
     @Test
@@ -84,6 +84,6 @@ public class CreateOrderTest {
         accessToken = responseCreate.extract().path("accessToken");
         ValidatableResponse responseCreateOrder = orderClient.createOrderWrongHash(accessToken);
         int statusCode = responseCreateOrder.extract().statusCode();
-        Assert.assertEquals("Wrong status error", SC_INTERNAL_SERVER_ERROR, statusCode);
+        Assert.assertEquals("Wrong status error for bad hash", SC_INTERNAL_SERVER_ERROR, statusCode);
     }
 }

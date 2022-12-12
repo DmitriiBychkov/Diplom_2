@@ -28,9 +28,9 @@ public class NegativeUserTest {
     public void userCanNotBeCreatedWithoutEmail() {
         ValidatableResponse responseCreate = userClient.createUser(userWithoutEmail);
         String actualMessage = responseCreate.extract().path("message");
-        Assert.assertEquals("Wrong message created without login", "Email, password and name are required fields", actualMessage);
+        Assert.assertEquals("Wrong message created without email", "Email, password and name are required fields", actualMessage);
         int statusCode = responseCreate.extract().statusCode();
-        Assert.assertEquals("Wrong status created without login", SC_FORBIDDEN, statusCode);
+        Assert.assertEquals("Wrong status created without email", SC_FORBIDDEN, statusCode);
     }
 
     @Test
@@ -48,8 +48,8 @@ public class NegativeUserTest {
     public void userCanNotBeCreatedWithoutName() {
         ValidatableResponse responseCreate = userClient.createUser(userWithoutName);
         String actualMessage = responseCreate.extract().path("message");
-        Assert.assertEquals("Wrong message created without password", "Email, password and name are required fields", actualMessage);
+        Assert.assertEquals("Wrong message created without name", "Email, password and name are required fields", actualMessage);
         int statusCode = responseCreate.extract().statusCode();
-        Assert.assertEquals("Wrong status created without password", SC_FORBIDDEN, statusCode);
+        Assert.assertEquals("Wrong status created without name", SC_FORBIDDEN, statusCode);
     }
 }

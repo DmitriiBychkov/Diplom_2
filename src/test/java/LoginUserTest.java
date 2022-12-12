@@ -31,13 +31,13 @@ public class LoginUserTest {
     }
 
     @Test
-    @DisplayName("Вход пользователя под существующим пользователем возможен и возвращает accessToken")
-    public void userCanBeLoginAndReturnToken() {
+    @DisplayName("Вход пользователя под существующим пользователем возможен")
+    public void userCanBeLogin() {
         userClient.createUser(user);
         ValidatableResponse responseLogin = userClient.loginUser(Credentials.from(user));
         accessToken = responseLogin.extract().path("accessToken");
         int statusCodeLogin = responseLogin.extract().statusCode();
-        Assert.assertEquals("Wrong status login", SC_OK, statusCodeLogin);
+        Assert.assertEquals("Wrong status for login", SC_OK, statusCodeLogin);
     }
 
     @Test
