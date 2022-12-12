@@ -48,7 +48,7 @@ public class GetOrderTest {
     }
 
     @Test
-    @DisplayName("Проверка получения списка заказов")
+    @DisplayName("Проверка отклонения списка заказов")
     @Description("Запрос от неавторизованного пользователя")
     public void getOrdersWithoutToken() {
         ValidatableResponse responseCreate = userClient.createUser(user);
